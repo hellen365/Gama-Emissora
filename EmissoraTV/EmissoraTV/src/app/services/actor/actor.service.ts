@@ -23,8 +23,15 @@ export class ActorService extends ProviderService {
 
     return this.http.post<any>(`${this.url}`, JSON.parse(data),{})
             .pipe(map(actor => {
-              console.log(actor)
               return actor;
+            }))
+  }
+
+  list() {
+    return this.http.get<any>(`${this.url}`,{})
+            .pipe(map(actors => {
+              console.log(actors)
+              return actors;
             }))
   }
 }
