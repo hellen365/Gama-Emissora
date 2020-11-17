@@ -1,0 +1,6 @@
+<mat-form-field class="input-container">
+    <mat-label>{{label}}</mat-label>
+    <span matPrefix *ngIf="prefix"> {{prefix}} &nbsp;</span>
+    <input matInput [type]="type" [formControl]="formCtrl">
+</mat-form-field>
+  

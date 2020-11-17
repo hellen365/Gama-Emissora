@@ -15,10 +15,19 @@ import { TelaInicialComponent } from './views/home/tela-inicial/tela-inicial.com
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './views/Login/login/login.component';
 import { ReservaComponent } from './views/views-Admin/reserva/reserva.component';
-import { CadastrarComponent } from './views/views-Admin/cadastrar/cadastrar.component';
+import { RegisterComponent } from './views/views-Admin/registration/register.component';
 import { ContratacaoComponent } from './views/views-Admin/contratacao/contratacao.component';
 import { MinhasContratacaoComponent } from './views/views-Ator/minhas-contratacao/minhas-contratacao.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TvInputComponent } from './components/tv-input/tv-input.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './helpers/jwt.inter';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { AuthenticationService } from './services/providers/authentication/authentication.service';
+import { MatSelectModule } from '@angular/material/select';
+import { TvSelectComponent } from './components/tv-select/tv-select.component';
 
 
 @NgModule({
@@ -27,10 +36,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     TelaInicialComponent,
     LoginComponent,
     ReservaComponent,
-    CadastrarComponent,
+    RegisterComponent,
     ContratacaoComponent,
     MinhasContratacaoComponent,
-
+    TvInputComponent,
+    TvSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +54,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTabsModule,
     MatTableModule,
     CommonModule,
-    MatFormFieldModule
-
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

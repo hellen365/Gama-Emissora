@@ -1,0 +1,11 @@
+<div class="register-container">
+    <tv-select [formCtrl]="profileCtrl" label="Perfil" [itens]="profileItens"></tv-select>
+    <tv-input label="Nome" [formCtrl]="nameCtrl"></tv-input>
+    <tv-input label="Email" [formCtrl]="emailCtrl"></tv-input>
+    <tv-input type="password" label="Senha" [formCtrl]="passwordCtrl"></tv-input>
+    <div *ngIf="profileCtrl.value == 2">
+        <tv-select [formCtrl]="sexCtrl" label="Sexo" [itens]="sexItens"></tv-select>
+        <tv-input prefix="R$" label="Salario/Hora" [formCtrl]="salaryCtrl"></tv-input>
+    </div>
+    <button (click)="onRegister()" mat-raised-button color="primary">Salvar</button>
+</div>
